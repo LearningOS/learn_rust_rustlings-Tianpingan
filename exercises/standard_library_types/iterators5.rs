@@ -10,7 +10,7 @@
 //
 // Make the code compile and the tests pass.
 
-// I AM NOT DONE
+
 
 use std::collections::HashMap;
 
@@ -33,7 +33,16 @@ fn count_for(map: &HashMap<String, Progress>, value: Progress) -> usize {
 
 fn count_iterator(map: &HashMap<String, Progress>, value: Progress) -> usize {
     // map is a hashmap with String keys and Progress values.
-    // map = { "variables1": Complete, "from_str": None, ... }
+    // map = { "variables1": Complete, "from_str": None, ... }  
+
+
+    let mut count = 0;
+    // // map.iter().(|key, value| )
+    let x: HashMap<_, _> = map.into_iter().filter(|(key, val)| *val == &value).collect();
+    // let values = map.values();
+    // let x: _ = values.iter().map(|val| val == &value).collect();
+    
+    x.len()
 }
 
 fn count_collection_for(collection: &[HashMap<String, Progress>], value: Progress) -> usize {
@@ -52,6 +61,17 @@ fn count_collection_iterator(collection: &[HashMap<String, Progress>], value: Pr
     // collection is a slice of hashmaps.
     // collection = [{ "variables1": Complete, "from_str": None, ... },
     //     { "variables2": Complete, ... }, ... ]
+    // // map.iter().(|key, value| )
+    let mut count: usize = 0;
+    let y:Vec<HashMap<_, _>> = collection.iter().map(|mp| {
+        let x: HashMap<_, _> = mp.into_iter().filter(|(key, val)| *val == &value).collect();
+        count = count + x.len();
+        x
+    }).collect();
+    count
+    // let values = map.values();
+    // let x: _ = values.iter().map(|val| val == &value).collect();
+
 }
 
 #[cfg(test)]
