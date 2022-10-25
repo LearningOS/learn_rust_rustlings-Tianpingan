@@ -5,8 +5,15 @@
 
 // Write a macro that passes the quiz! No hints this time, you can do it!
 
-// I AM NOT DONE
 
+macro_rules! my_macro {
+
+    ($val:expr) => {
+        // println!("Look at this other macro: {}", $val);
+        // "Hello " + $val
+        format!("Hello {}", $val)
+    }
+}
 #[cfg(test)]
 mod tests {
     use super::*;
